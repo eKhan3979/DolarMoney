@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="DolarMoney.Controles2.UcrImportVolumes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cm="clr-namespace:DolarMoney.Comum"
+             xmlns:local="clr-namespace:DolarMoney.Controles"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Comum/Padrao.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="11"
+                    Style="{StaticResource gstyBorder}"/>
+
+            <cm:UcrTitulo x:Name="utlImport" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11"
+                          Publico_Titulo="Importação: Atualiza Volumes de uma Ação (CSV da Nasdaq)"
+                          Publico_VisibilityClose="Collapsed"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Investimento"
+                       Style="{StaticResource gstyTextBlockLabel}"/>
+            <TextBlock Grid.Row="2" Grid.Column="4" Text="Path do CSV"
+                       Style="{StaticResource gstyTextBlockLabel}"/>
+
+            <ComboBox x:Name="cboInvestimento" Grid.Row="3" Grid.Column="2"
+                      Style="{StaticResource gstyComboBox}" Height="30"
+                      ItemsSource="{Binding Path=ListaInvestimentos}"
+                      DisplayMemberPath="Descricao"
+                      SelectedItem="{Binding Path=InvestimentoSelecionado}"/>
+
+            <TextBox x:Name="tbxPath" Grid.Row="3" Grid.Column="4"
+                     Text="{Binding PathCSV, Mode=TwoWay}"
+                     Style="{StaticResource gstyTextBox}"/>
+
+            <Button x:Name="btnPath" Grid.Row="2" Grid.RowSpan="2" Grid.Column="6"
+                    Height="42" VerticalAlignment="Bottom"
+                    Style="{StaticResource gstyButton}"
+                    ToolTip=" Pesquisar JSON "
+                    Click="btnPath_Click">
+                <Image Source="/Controles/Edit.png" Margin="4,4,4,4"/>
+            </Button>
+
+            <Button x:Name="btnGravar" Grid.Row="2" Grid.RowSpan="2" Grid.Column="8"
+                    Height="42" VerticalAlignment="Bottom"
+                    Style="{StaticResource gstyButton}"
+                    ToolTip=" Gravar cotações "
+                    Click="btnGravar_Click">
+                <Image Source="/Controles/Save.png" Margin="4,4,4,4"/>
+            </Button>
+
+        </Grid>
+
+        <DataGrid x:Name="dgrCotacoes" Grid.Row="2" Grid.Column="0"
+                  Style="{StaticResource gstyDataGrid}"
+                  ItemsSource="{Binding Path=ListaVolumes}"
+                  ColumnHeaderStyle="{StaticResource gstyDGHeaderC}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Nº" Width="40">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Numero}" Style="{StaticResource gstyTextBlockDGC}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Data Cotação" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Dd_Mm_Yyyy_Cotacao}" Style="{StaticResource gstyTextBlockDGC}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Cotação  " Width="90" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Cotacao}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Volume  " Width="90" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Volume}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Máximo  " Width="70" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Maximo}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Mínimo  " Width="70" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Minimo}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid x:Name="grdGravacoes" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0"
+              Opacity="0.95" Background="#FFE0E0E0" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="9" Style="{StaticResource gstyBorder}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Gravações:" Style="{StaticResource gstyTextBlockLabel}"/>
+            <TextBox x:Name="tbxGravados" Grid.Row="2" Grid.Column="4" Text="{Binding Path=RegistrosGravados}"
+                     Style="{StaticResource gstyTextBoxReadOnlyC}"/>
+            <TextBlock Grid.Row="2" Grid.Column="5" Text="/" Style="{StaticResource gstyTextBlockLabel}"
+                       HorizontalAlignment="Center"/>
+            <TextBox x:Name="tbxRegistros" Grid.Row="2" Grid.Column="6" Text="{Binding Path=RegistrosAGravar}"
+                     Style="{StaticResource gstyTextBoxReadOnlyC}"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="DolarMoney.Comum.UcpBarraWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DolarMoney.Comum"
+             mc:Ignorable="d" 
+             d:DesignHeight="42" d:DesignWidth="500">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Comum/Padrao.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7"/>
+            <RowDefinition/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="42"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="28"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="28"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="28"/>
+            <ColumnDefinition Width="12"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="10" Background="#FF21547A"/>
+
+        <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="0" Source="/Comum/coin_white.png"
+               Margin="12,6,0,6"/>
+
+        <TextBlock x:Name="tbkTitulo" Grid.Row="1" Grid.Column="2" Foreground="White" Text="Título"
+                   Style="{StaticResource gstyTextBlockTitulo}"/>
+
+        <Button x:Name="btnMinimizar" Grid.Row="1" Grid.Column="4" Click="BtnMinimizar_Click" ToolTip=" Minimizar "
+                Style="{StaticResource gstyWdwButtonW}" Height="28">
+            <Image x:Name="imgBtnMinimizar" Source="/Comum/WindowMinimize.png" Margin="3,3,3,3"/>
+        </Button>
+
+        <Button x:Name="btnMaximizar" Grid.Row="1" Grid.Column="6" Click="BtnMaximizar_Click" ToolTip=" Maximizar "
+                Style="{StaticResource gstyWdwButtonW}" Height="28">
+            <Image x:Name="imgBtnMaximize" Source="/Comum/WindowMaximize.png" Stretch="Uniform" Visibility="Visible"/>
+        </Button>
+
+        <Button x:Name="btnNormal" Grid.Row="1" Grid.Column="6" Click="BtnNormal_Click" ToolTip=" Maximizar "
+                Style="{StaticResource gstyWdwButtonW}" Height="28" Visibility="Hidden">
+            <Image x:Name="imgBtnNormal" Source="/Comum/WindowNormal.png" Margin="3,3,3,3"/>
+        </Button>
+
+        <Button x:Name="btnFechar" Grid.Row="1" Grid.Column="8" Click="BtnFechar_Click" ToolTip="Fechar"
+                Style="{StaticResource gstyWdwButtonW}" Height="28">
+            <Image x:Name="imgBtnFechar" Source="/Comum/WindowClose.png" Margin="3,3,3,3"/>
+        </Button>
+    </Grid>
+</UserControl>

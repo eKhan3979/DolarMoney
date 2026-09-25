@@ -1,0 +1,134 @@
+﻿<UserControl x:Class="DolarMoney.Controles.UcrOperacaoInvestimento"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cmm="clr-namespace:DolarMoney.Comum"
+             xmlns:local="clr-namespace:DolarMoney.Controles"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Comum/Padrao.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="1"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="980"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="1"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Grid.ColumnSpan="5"
+                Style="{StaticResource gstyBorder}"/>
+
+        <cmm:UcrTitulo x:Name="utlOperacaoInvestimento" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                       Publico_Titulo="Operações do Investimento"
+                       Publico_VisibilityClose="Visible"
+                       Evento_Fechar="utlOperacaoInvestimento_Evento_Fechar"/>
+
+        <DataGrid x:Name="dgrOperacoes" Grid.Row="5" Grid.Column="2" Style="{StaticResource gstyDataGrid}"
+                  ColumnHeaderStyle="{StaticResource gstyDGHeaderR}"
+                  ItemsSource="{Binding Path=ListaOperacoesInvestimentos}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Nº" Width="40" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Numero}" Style="{StaticResource gstyTextBlockDGC}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Data Oper." Width="100" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Dd_Mm_Yyyy_Operacao}" Style="{StaticResource gstyTextBlockDGC}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="C/V" Width="50" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=CV}" Style="{StaticResource gstyTextBlockDGC}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Qtde.  " Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Quantidade}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="P.Unitário  " Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=PrecoUnitario}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Valor Total  " Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=ValorTotal}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Lucro/Prej.  " Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=LucroPrejuizoStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Q.Acum.  " Width="75">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=QtdeEstoqueStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Custo Ac.  " Width="75">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=CustoEstoqueStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Valor Atual  " Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=ValorAtualStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Valorização  " Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=ValorizacaoStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="L/P Acum.  " Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=AcumuladoStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</UserControl>

@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="DolarMoney.Controles2.UcrGraficosParametros"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ucm="clr-namespace:DolarMoney.Comum"
+             xmlns:local="clr-namespace:DolarMoney.Controles2"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Comum/Padrao.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="1"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="72"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="72"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="42"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="42"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="1"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="17" Style="{StaticResource gstyBorder}"
+                Background="#FFFAFAFA"/>
+
+        <ucm:UcrTitulo x:Name="utlGraficos" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="15"
+                       Publico_Titulo="Gráficos"
+                       Publico_VisibilityClose="Hidden"/>
+
+        <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource gstyLabel}">Ação: </Label>
+        <Label Grid.Row="2" Grid.Column="4" Style="{StaticResource gstyLabel}">De:</Label>
+        <Label Grid.Row="2" Grid.Column="6" Style="{StaticResource gstyLabel}">Até:</Label>
+        <Label Grid.Row="2" Grid.Column="8" Style="{StaticResource gstyLabel}">Dias MM1:</Label>
+        <Label Grid.Row="2" Grid.Column="10" Style="{StaticResource gstyLabel}">Dias MM2:</Label>
+
+        <ComboBox x:Name="cboAcao" Grid.Row="4" Grid.Column="2" Style="{StaticResource gstyComboBox}" Height="30"
+                  ItemsSource="{Binding Path=ListaAcoes, Mode=TwoWay}"
+                  SelectedItem="{Binding Path=AcaoSelecionada, Mode=TwoWay}"
+                  DisplayMemberPath="Descricao"
+                  SelectionChanged="cboAcao_SelectionChanged"/>
+        <DatePicker x:Name="dtpDe" Grid.Row="4" Grid.Column="4" Style="{StaticResource gstyDatePicker}"
+                    SelectedDate="{Binding Path=PeriodoDe}"/>
+        <DatePicker x:Name="dtpAte" Grid.Row="4" Grid.Column="6" Style="{StaticResource gstyDatePicker}"
+                    SelectedDate="{Binding Path=PeriodoAte}"/>
+        <ComboBox x:Name="cboDiasMM1" Grid.Row="4" Grid.Column="8" Style="{StaticResource gstyComboBox}" Height="30"
+                  ItemsSource="{Binding Path=ListaDiasMM1, Mode=TwoWay}"
+                  SelectedItem="{Binding Path=MMDias1, Mode=TwoWay}"
+                  SelectionChanged="cboDiasMM1_SelectionChanged"
+                  HorizontalContentAlignment="Center"/>
+        <ComboBox x:Name="cboDiasMM2" Grid.Row="4" Grid.Column="10" Style="{StaticResource gstyComboBox}" Height="30"
+                  ItemsSource="{Binding Path=ListaDiasMM2, Mode=TwoWay}"
+                  SelectedItem="{Binding Path=MMDias2, Mode=TwoWay}"
+                  SelectionChanged="cboDiasMM2_SelectionChanged"
+                  HorizontalContentAlignment="Center"/>
+
+        <Button x:Name="btnPesquisar" Grid.Row="2" Grid.RowSpan="3" Grid.Column="12" VerticalAlignment="Bottom"
+                Style="{StaticResource gstyButton}" Click="btnPesquisar_Click"
+                ToolTip=" Pesquisar " Height="42" Width="42">
+            <Image Source="/Controles2/Edit.png" Style="{StaticResource gstyImageLink}"/>
+        </Button>
+
+        <Button x:Name="btnAnalise" Grid.Row="2" Grid.RowSpan="3" Grid.Column="14" VerticalAlignment="Bottom"
+                Style="{StaticResource gstyButton}" Click="btnAnalise_Click"
+                ToolTip=" Histórico de Tendências " Height="42" Width="42">
+            <Image Source="/Controles2/Analise.png" Style="{StaticResource gstyImageLink}"
+                   Margin="2,2,2,2"/>
+        </Button>
+
+    </Grid>
+</UserControl>

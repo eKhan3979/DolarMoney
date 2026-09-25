@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="DolarMoney.Controles.UcrInvestimento"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DolarMoney.Controles"
+             xmlns:cm="clr-namespace:DolarMoney.Comum"
+             mc:Ignorable="d" 
+             d:DesignHeight="290" d:DesignWidth="1180">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Comum/Padrao.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="42"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="42"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="42"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="1"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.RowSpan="7" Grid.Column="0" Grid.ColumnSpan="19"
+                Style="{StaticResource gstyBorderQuadro}"/>
+            
+        <cm:UcrTitulo x:Name="utlInvestimento" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="17"
+                      Publico_Titulo="Investimentos"
+                      Publico_VisibilityClose="Hidden"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Tipo de Investimento:" Style="{StaticResource gstyTextBlockLabel}"/>
+        <TextBlock Grid.Row="3" Grid.Column="4" Text="Ticker:" Style="{StaticResource gstyTextBlockLabel}"/>
+        <TextBlock Grid.Row="3" Grid.Column="6" Text="Data Cadastro:" Style="{StaticResource gstyTextBlockLabel}"/>
+        <TextBlock Grid.Row="3" Grid.Column="8" Text="Ativo:" Style="{StaticResource gstyTextBlockLabel}"/>
+        <TextBlock Grid.Row="3" Grid.Column="10" Text="Nome do Investimento:" Style="{StaticResource gstyTextBlockLabel}"/>
+
+        <ComboBox x:Name="cboTipoInvestimento" Grid.Row="4" Grid.Column="2"
+                    Style="{StaticResource gstyComboBox}"
+                    ItemsSource="{Binding Path=ListaTipoInvestimento, Mode=OneWay}"
+                    SelectedValuePath="IdTipoInvestimento"
+                    DisplayMemberPath="Tipo"
+                    SelectedValue="{Binding Path=InvestimentoEdit.IdTipoInvestimento, Mode=TwoWay}"
+                    Height="28"/>
+
+        <TextBox x:Name="tbxTicker" Grid.Row="4" Grid.Column="4"
+                    MaxLength="8" Text="{Binding Path=InvestimentoEdit.Ticker, Mode=TwoWay}"
+                    Style="{StaticResource gstyTextBox}"/>
+
+        <DatePicker x:Name="dtpCadastro" Grid.Row="4" Grid.Column="6"
+                    SelectedDate="{Binding Path=InvestimentoEdit.DataCadastro, Mode=TwoWay}"
+                    Style="{StaticResource gstyDatePicker}"/>
+
+        <ComboBox x:Name="cboAtivo" Grid.Row="4" Grid.Column="8"
+                    ItemsSource="{Binding Path=ListaAtivo, Mode=OneWay}"
+                    DisplayMemberPath="Descricao"
+                    SelectedValuePath="Check"
+                    SelectedValue="{Binding Path=InvestimentoEdit.Ativo}"
+                    Style="{StaticResource gstyComboBox}"
+                    Height="28"/>
+
+        <TextBox x:Name="tbxNome" Grid.Row="4" Grid.Column="10"
+                    Style="{StaticResource gstyTextBox}"
+                    MaxLength="50"
+                    Text="{Binding Path=InvestimentoEdit.Nome}"/>
+
+        <Button x:Name="btnGravar" Grid.Row="3" Grid.RowSpan="2" Grid.Column="12"
+                ToolTip=" Gravar " Click="btnGravar_Click"
+                Height="42" VerticalAlignment="Bottom"
+                Style="{StaticResource gstyButton}">
+            <Button.Content>
+                <Image Source="/Controles/Save.png" Margin="4,4,4,4"/>
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="btnLimpar" Grid.Row="3" Grid.RowSpan="2" Grid.Column="14"
+                ToolTip=" Limpar " Click="btnLimpar_Click"
+                Height="42" VerticalAlignment="Bottom"
+                Style="{StaticResource gstyButton}">
+            <Button.Content>
+                <Image Source="/Controles/New.png" Margin="4,4,4,4"/>
+            </Button.Content>
+        </Button>
+
+        <Button x:Name="btnExcluir" Grid.Row="3" Grid.RowSpan="2" Grid.Column="16"
+                ToolTip=" Excluir " Click="btnExcluir_Click"
+                Height="42" VerticalAlignment="Bottom"
+                Style="{StaticResource gstyButton}">
+            <Button.Content>
+                <Image Source="/Controles/Trash.png" Margin="4,4,4,4"/>
+            </Button.Content>
+        </Button>
+
+        <DataGrid x:Name="dgrInvestimentos" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="19"
+                  ItemsSource="{Binding Path=ListaInvestimentos}"
+                  Style="{StaticResource gstyDataGrid}"
+                  ColumnHeaderStyle="{StaticResource gstyDGHeader}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="nº" Width="30" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Numero}" Style="{StaticResource gstyTextBlockDGC}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header=" " Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnEdit" ToolTip=" Editar " Style="{StaticResource gstyButton}"
+                                    BorderBrush="Transparent"
+                                    Click="btnEdit_Click">
+                                <Button.Content>
+                                    <Image Source="/Controles/Edit.png" Margin="2,2,2,2"/>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Ticker" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Ticker}" Style="{StaticResource gstyTextBlockDG}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Data Cadastro" Width="120" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Dd_Mm_Yyyy_Cadastro}" Style="{StaticResource gstyTextBlockDGC}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Ativo" Width="60" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=AtivoSN}" Style="{StaticResource gstyTextBlockDGC}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Nome" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Nome}" Style="{StaticResource gstyTextBlockDG}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</UserControl>

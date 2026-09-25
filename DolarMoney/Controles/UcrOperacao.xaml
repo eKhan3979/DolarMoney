@@ -1,0 +1,482 @@
+﻿<UserControl x:Class="DolarMoney.Controles.UcrOperacao"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cm="clr-namespace:DolarMoney.Comum"
+             xmlns:local="clr-namespace:DolarMoney.Controles"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1320">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Comum/Padrao.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="#FFE0E0E0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="13"
+                    Style="{StaticResource gstyBorder}" Background="#FFF9F9FF"/>
+            
+            <cm:UcrTitulo x:Name="utlOperacao" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="11"
+                          Publico_Titulo="Operações"
+                          Publico_VisibilityClose="Collapsed"/>
+
+            <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource gstyLabel}">Tipo de Investimento</Label>
+            <Label Grid.Row="2" Grid.Column="4" Style="{StaticResource gstyLabel}">Período de</Label>
+            <Label Grid.Row="2" Grid.Column="6" Style="{StaticResource gstyLabel}">Até</Label>
+            <Label Grid.Row="2" Grid.Column="8" Style="{StaticResource gstyLabel}">Investimento</Label>
+
+            <ComboBox x:Name="cboTipoInvestimento" Grid.Row="3" Grid.Column="2"
+                      Style="{StaticResource gstyComboBox}"
+                      Height="30"
+                      ItemsSource="{Binding Path=ListaTipoInvestimento}"
+                      SelectedValuePath="IdTipoInvestimento"
+                      SelectedValue="{Binding Path=Pesquisar.IdTipoInvestimento}"
+                      SelectionChanged="cboTipoInvestimento_SelectionChanged"
+                      DisplayMemberPath="Tipo"/>
+            <DatePicker x:Name="dtpDe" Grid.Row="3" Grid.Column="4"
+                        Style="{StaticResource gstyDatePicker}"
+                        SelectedDate="{Binding Path=Pesquisar.PeriodoDe}"/>
+            <DatePicker x:Name="dtpAte" Grid.Row="3" Grid.Column="6"
+                        Style="{StaticResource gstyDatePicker}"
+                        SelectedDate="{Binding Path=Pesquisar.PeriodoAte}"/>
+            <ComboBox x:Name="cboInvestimento" Grid.Row="3" Grid.Column="8"
+                      Style="{StaticResource gstyComboBox}"
+                      Height="30"
+                      ItemsSource="{Binding Path=ListaInvestimentosExibir}"
+                      SelectedValuePath="IdInvestimento"
+                      SelectedValue="{Binding Path=Pesquisar.IdInvestimento}"
+                      DisplayMemberPath="Ticker"/>
+
+            <Button x:Name="btnPesquisar" Grid.Row="2" Grid.RowSpan="2" Grid.Column="10"
+                    VerticalAlignment="Bottom" Height="42" Style="{StaticResource gstyButton}"
+                    Cursor="Hand" ToolTip=" Pesquisar "
+                    Click="btnPesquisar_Click">
+                <Button.Content>
+                    <Image Source="/Controles/Edit.png" Margin="4,4,4,4"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="9"
+                    Style="{StaticResource gstyBorder}"/>
+            <cm:UcrTitulo x:Name="utlResumo" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7"
+                          Publico_VisibilityClose="Collapsed"
+                          Publico_Titulo="Resumo das Operações"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource gstyTextBlockLabel}" Text="Lucro"/>
+            <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource gstyTextBlockLabel}" Text="Prejuizos"/>
+            <TextBlock Grid.Row="2" Grid.Column="6" Style="{StaticResource gstyTextBlockLabel}" Text="Líquido"/>
+            
+            <TextBox x:Name="tbxLucro" Grid.Row="3" Grid.Column="2" Style="{StaticResource gstyTextBoxReadOnlyR}"
+                     Text="{Binding Path=ResumoPesquisa.LucroStr}"/>
+            <TextBox x:Name="tbxPrejuizo" Grid.Row="3" Grid.Column="4" Style="{StaticResource gstyTextBoxReadOnlyR}"
+                     Text="{Binding Path=ResumoPesquisa.PrejuizoStr}"/>
+            <TextBox x:Name="tbxLiquido" Grid.Row="3" Grid.Column="6" Style="{StaticResource gstyTextBoxReadOnlyR}"
+                     Text="{Binding Path=ResumoPesquisa.LiquidoStr}" FontWeight="Bold"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="11"
+                    Style="{StaticResource gstyBorder}"/>
+            
+            <cm:UcrTitulo x:Name="utlEstoque" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9"
+                          Publico_VisibilityClose="Collapsed"
+                          Publico_Titulo="Estoques"/>
+            
+            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource gstyTextBlockLabel}" Text="Estoque"/>
+            <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource gstyTextBlockLabel}" Text="Rentab."/>
+            <TextBlock Grid.Row="2" Grid.Column="6" Style="{StaticResource gstyTextBlockLabel}" Text="Oper. + Estq."/>
+            <TextBlock Grid.Row="2" Grid.Column="8" Style="{StaticResource gstyTextBlockLabel}" Text="%" HorizontalAlignment="Center"/>
+
+            <TextBox x:Name="tbxEstRentabilidade" Grid.Row="3" Grid.Column="2" Style="{StaticResource gstyTextBoxReadOnlyR}"
+                     Text="{Binding Path=ResumoPesquisa.ValorEstoqueStr}"/>
+            <TextBox x:Name="tbxEstoque" Grid.Row="3" Grid.Column="4" Style="{StaticResource gstyTextBoxReadOnlyR}"
+                     Text="{Binding Path=ResumoPesquisa.EstoqueStr}" FontWeight="Bold"/>
+            <TextBox x:Name="tbxTotal" Grid.Row="3" Grid.Column="6" Style="{StaticResource gstyTextBoxReadOnlyR}"
+                     Text="{Binding Path=ResumoPesquisa.TotalStr}" FontWeight="Bold"/>
+            <TextBox x:Name="tbxPercentual" Grid.Row="3" Grid.Column="8" Style="{StaticResource gstyTextBoxReadOnlyR}"
+                     Text="{Binding Path=ResumoPesquisa.PercentualStr}"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1"/>                
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="25"
+                    Style="{StaticResource gstyBorder}" Background="#FFF9F9FF"/>
+
+            <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource gstyLabel}">Tipo de Investimento</Label>
+            <Label Grid.Row="1" Grid.Column="4" Style="{StaticResource gstyLabel}">Data Operação</Label>
+            <Label Grid.Row="1" Grid.Column="6" Style="{StaticResource gstyLabel}">Ticker</Label>
+            <Label Grid.Row="1" Grid.Column="8" Style="{StaticResource gstyLabel}">C/V</Label>
+            <Label Grid.Row="1" Grid.Column="10" Style="{StaticResource gstyLabel}">Qtde.</Label>
+            <Label Grid.Row="1" Grid.Column="12" Style="{StaticResource gstyLabel}">Taxa</Label>
+            <Label Grid.Row="1" Grid.Column="14" Style="{StaticResource gstyLabel}">Valor Total</Label>
+            <Label Grid.Row="1" Grid.Column="16" Style="{StaticResource gstyLabel}">Preço/Custo Unit.</Label>
+
+            <TextBox x:Name="tbxCadTipoInvestimento" Grid.Row="2" Grid.Column="2"
+                     Style="{StaticResource gstyTextBoxReadOnly}"
+                     Text="{Binding Path=Pesquisar.TipoInvestimento}"/>
+            <DatePicker x:Name="dtpCadOperacao" Grid.Row="2" Grid.Column="4"
+                        Style="{StaticResource gstyDatePicker}"
+                        SelectedDate="{Binding Path=Cadastro.DataOperacao}"/>
+            <ComboBox x:Name="cboCadInvestimento" Grid.Row="2" Grid.Column="6"
+                      ItemsSource="{Binding Path=ListaInvestimentosExibir}"
+                      SelectedValuePath="IdInvestimento"
+                      SelectedValue="{Binding Path=Cadastro.IdInvestimento}"
+                      DisplayMemberPath="Ticker"
+                      Style="{StaticResource gstyComboBox}"
+                      Height="30"/>
+            <ComboBox x:Name="cboCadCV" Grid.Row="2" Grid.Column="8"
+                      ItemsSource="{Binding Path=ListaCadCV}"
+                      SelectedValuePath="Codigo"
+                      SelectedValue="{Binding Path=Cadastro.CV}"
+                      DisplayMemberPath="Descricao"
+                      Style="{StaticResource gstyComboBox}"
+                      Height="30"/>
+            <TextBox x:Name="tbxCadQuantidade" Grid.Row="2" Grid.Column="10"
+                     LostFocus="tbxCadQuantidade_LostFocus"
+                     PreviewTextInput="tbxCadQuantidade_PreviewTextInput"
+                     Style="{StaticResource gstyTextBoxDecimal}"
+                     MaxLength="10"/>
+            <TextBox x:Name="tbxCadTaxa" Grid.Row="2" Grid.Column="12"
+                     Style="{StaticResource gstyTextBoxDecimal}"
+                     LostFocus="tbxCadTaxa_LostFocus"
+                     PreviewTextInput="tbxCadTaxa_PreviewTextInput"
+                     MaxLength="6"/>
+            <TextBox x:Name="tbxCadValorTotal" Grid.Row="2" Grid.Column="14"
+                     Style="{StaticResource gstyTextBoxDecimal}"
+                     LostFocus="tbxCadValorTotal_LostFocus"
+                     PreviewTextInput="tbxCadValorTotal_PreviewTextInput"
+                     MaxLength="7"/>
+            <TextBox x:Name="tbxCadPrecoUnitario" Grid.Row="2" Grid.Column="16"
+                     Text="{Binding Path=Cadastro.PrecoUnitario}"
+                     Style="{StaticResource gstyTextBoxReadOnlyR}"/>
+
+            <Button x:Name="btnCadGravar" Grid.Row="1" Grid.RowSpan="2" Grid.Column="18"
+                    ToolTip=" Gravar " Height="42" VerticalAlignment="Bottom"
+                    Style="{StaticResource gstyButton}"
+                    Click="btnCadGravar_Click">
+                <Button.Content>
+                    <Image Source="/Controles/Save.png" Margin="4,4,4,4"/>
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="btnCadLimpar" Grid.Row="1" Grid.RowSpan="2" Grid.Column="20"
+                    ToolTip=" Limpar " Height="42" VerticalAlignment="Bottom"
+                    Style="{StaticResource gstyButton}"
+                    Click="btnCadLimpar_Click">
+                <Button.Content>
+                    <Image Source="/Controles/Trash.png" Margin="4,4,4,4"/>
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="btnCadExcluir" Grid.Row="1" Grid.RowSpan="2" Grid.Column="22"
+                    ToolTip=" Excluir " Height="42" VerticalAlignment="Bottom"
+                    Style="{StaticResource gstyButton}"
+                    Click="btnCadExcluir_Click">
+                <Button.Content>
+                    <Image Source="/Controles/Delete.png" Margin="4,4,4,4"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid x:Name="dgrOperacoes" Grid.Row="0" Grid.Column="0"
+                      Style="{StaticResource gstyDataGrid}"
+                      ColumnHeaderStyle="{StaticResource gstyDGHeaderR}"
+                      ItemsSource="{Binding Path=ListaOperacoes}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Nº" Width="40" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Numero}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="" Width="40">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image x:Name="imgEdit" Source="/Controles/Edit.png" Margin="1,1,1,1"
+                                       MouseLeftButtonDown="imgEdit_MouseLeftButtonDown"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Data Operação" Width="105" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Dd_Mm_Yyyy_Operacao}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Ticker" Width="70" HeaderStyle="{StaticResource gstyDGHeader}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Ticker}" Style="{StaticResource gstyTextBlockDG}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Qtde.  " Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Quantidade}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="C/V  " Width="40" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=CV}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Valor Total  " Width="85">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=ValorTotal}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Preço Unit.  " Width="85">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=PrecoUnitario}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Lucro/Prj.  " Width="75">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=LucroPrejuizo}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid x:Name="dgrEstoque" Grid.Row="0" Grid.Column="2"
+                      Style="{StaticResource gstyDataGrid}"
+                      ItemsSource="{Binding Path=ListaEstoques}"
+                      ColumnHeaderStyle="{StaticResource gstyDGHeader}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Nº" Width="30" HeaderStyle="{StaticResource gstyDGHeaderC}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Numero}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Ticker" Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Ticker}" Style="{StaticResource gstyTextBlockDG}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="" Width="36">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image x:Name="imgDetalhes" Source="/Controles/Edit.png" 
+                                       MouseLeftButtonDown="imgDetalhes_MouseLeftButtonDown"
+                                       ToolTip=" Operações do Ticker " Margin="1,1,1,1"
+                                       Style="{StaticResource gstyImageLink}"/>                                       
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Qtde.  " Width="78" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=QuantidadeStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Custo Unit.  " Width="88" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=CustoUnitarioStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Cota. Atual  " Width="90" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=CotaAtualStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Custo Total  " Width="88" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=ValorTotalStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Total Atual  " Width="88" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=TotalAtualStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Lucro/Prej.  " Width="85" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=LucroPrejuizoStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="" Width="60" HeaderStyle="{StaticResource gstyDGHeaderR}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=LucroPrejuizoPercentualStr}" Style="{StaticResource gstyTextBlockDGR}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid x:Name="grdOperacaoInvestimento" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="5"
+              Opacity="0.95" Background="#FFF0F0F0" Visibility="Hidden"
+              Panel.ZIndex="100">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <local:UcrOperacaoInvestimento x:Name="ucrOperacaoInvestimento"
+                                           Evento_Fechar="ucrOperacaoInvestimento_Evento_Fechar"
+                                           Grid.Row="2" Grid.Column="2"/>
+
+        </Grid>
+    </Grid>
+</UserControl>

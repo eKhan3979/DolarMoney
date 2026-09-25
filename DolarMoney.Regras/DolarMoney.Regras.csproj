@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.13.0" />
+    <PackageReference Include="itext" Version="9.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DolarMoney.DAO\DolarMoney.DAO.csproj" />
+    <ProjectReference Include="..\DolarMoney.Model\DolarMoney.Model.csproj" />
+    <ProjectReference Include="..\DolarMoney.ViewModel\DolarMoney.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

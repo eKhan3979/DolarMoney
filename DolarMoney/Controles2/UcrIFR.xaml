@@ -1,0 +1,154 @@
+﻿<UserControl x:Class="DolarMoney.Controles2.UcrIFR"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sct="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+             xmlns:local="clr-namespace:DolarMoney.Controles2"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Comum/Padrao.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <local:UcrGraficosParametros x:Name="ucrParametros" Grid.Row="0" Grid.Column="0" 
+                                         Evento_Analises="ucrParametros_Evento_Analises"
+                                         Evento_Pesquisar="ucrParametros_Evento_Pesquisar"
+                                         Publico_Titulo="Gráfico IFR"/>
+
+            <local:UcrGraficosAnalise x:Name="ucrAnalise" Grid.Row="0" Grid.Column="2"
+                                      Evento_Gravar="ucrAnalise_Evento_Gravar"/>
+        </Grid>
+
+        <Grid x:Name="grdCotacaoGraficos" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="144" MaxWidth="615"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid x:Name="dgrCotacoes" Grid.Row="0" Grid.Column="0"
+                      Style="{StaticResource gstyDataGrid}"
+                      ItemsSource="{Binding Path=ListaIFR}"
+                      ColumnHeaderStyle="{StaticResource gstyDGHeaderC}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Nº" Width="35">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Numero}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Data Cotação" Width="90">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Dd_Mm_Yyyy_Cotacao}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Cotação" Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=ValorCotacaoStr}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="IFR" Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=IFRStr}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="RS" Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=RSStr}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="M.Ganhos" Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=MediaGanhos}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="M.Perdas" Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=MediaPerdas}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Ganho" Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Ganho}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Perda" Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Perda}" Style="{StaticResource gstyTextBlockDGC}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <GridSplitter x:Name="gspCotacaoGrafico" Grid.Row="0" Grid.Column="1"
+                          VerticalContentAlignment="Stretch" VerticalAlignment="Stretch" Width="3" Background="#FFA0A0A0"
+                          HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"
+                          ResizeDirection="Columns"/>
+
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="250"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource gstyBorder}">
+                    <sct:WpfPlot x:Name="sctGrafico" />
+                </Border>
+                <GridSplitter x:Name="gspGraficos" Grid.Row="1" Grid.Column="0"
+                              VerticalContentAlignment="Center" VerticalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Height="3" Background="#FFA0A0a0"
+                              ResizeDirection="Rows" />
+                <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource gstyBorder}">
+                    <sct:WpfPlot x:Name="sctIFR" />
+                </Border>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

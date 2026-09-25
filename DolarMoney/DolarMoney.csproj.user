@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Comum\UcpBarraWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Comum\UcrTitulo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrDonchian.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrDonchianParametros.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrGraficos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrGraficosAnalise.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrGraficosParametros.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrGraficosTendencias.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrIFR.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrImportVolumes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrInvesting.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrIR.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles2\UcrMACD.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles\UcrCotacoes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles\UcrCotacoesDoDia.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles\UcrCotacoesImport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles\UcrInvestimento.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles\UcrOperacao.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controles\UcrOperacaoInvestimento.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

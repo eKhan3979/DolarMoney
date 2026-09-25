@@ -1,0 +1,96 @@
+﻿<Window x:Class="DolarMoney.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DolarMoney"
+        xmlns:ctr="clr-namespace:DolarMoney.Controles"
+        xmlns:cm="clr-namespace:DolarMoney.Comum"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        Title="" Height="840" Width="1420">
+    <Window.Resources>
+        <ResourceDictionary Source="/Comum/Padrao.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource gstyBorder}"/>
+
+        <cm:UcpBarraWindow x:Name="utlMain" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                           Publico_Titulo="Dolar: MONEY !!!"
+                           Evento_Fechar="utlMain_Evento_Fechar"
+                           Evento_Maximizar="utlMain_Evento_Maximizar"
+                           Evento_Minimizar="utlMain_Evento_Minimizar"
+                           MouseLeftButtonDown="utlMain_MouseLeftButtonDown"/>
+
+        <Menu x:Name="mnuMain" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
+              VerticalContentAlignment="Center" Background="Azure">
+            <MenuItem x:Name="mitInvestimentos" Header="Investimentos" Style="{StaticResource gstyMenuItem}"
+                      Click="mitInvestimentos_Click"/>
+            <MenuItem x:Name="mitOperacoes" Header="Operações" Style="{StaticResource gstyMenuItem}"
+                      Click="mitOperacoes_Click"/>
+            <MenuItem x:Name="mitCotacoesDoDia" Header="Cotações do Dia" Style="{StaticResource gstyMenuItem}"
+                      Click="mitCotacoesDoDia_Click"/>
+            <MenuItem x:Name="mitCotacoes" Header="Consulta Cotações" Style="{StaticResource gstyMenuItem}"
+                        Click="mitCotacoes_Click"/>
+            <MenuItem x:Name="mitImportacoes" Header="Importações" Style="{StaticResource gstyMenuItem}">
+                <MenuItem x:Name="mitInvesting" Header="Investing: Cotações do dia" Style="{StaticResource gstyMenuItem}"
+                          Click="mitInvesting_Click"/>
+                <MenuItem x:Name="mitCotacoesImport" Header="Cotações por Ação StatusInvest" Style="{StaticResource gstyMenuItem}"
+                          Click="mitCotacoesImport_Click"/>
+                <MenuItem x:Name="mitVolume" Header="Volumes por Ação CSV da Nasdaq" Style="{StaticResource gstyMenuItem}"
+                          Click="mitVolume_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="mitMediaMovel" Header="Média Móvel" Style="{StaticResource gstyMenuItem}"
+                        Click="mitMediaMovel_Click"/>
+            <MenuItem x:Name="mitMACD" Header="MACD" Style="{StaticResource gstyMenuItem}"
+                      Click="mitMACD_Click"/>
+            <MenuItem x:Name="mitIFR" Header="IFR" Style="{StaticResource gstyMenuItem}"
+                      Click="mitIFR_Click"/>
+            <MenuItem x:Name="mitFR" Header="IR" Style="{StaticResource gstyMenuItem}"
+                      Click="mitFR_Click"/>
+            <!--
+            <MenuItem x:Name="mitCanaisDonchian" Header="Canais Donchian" Style="{StaticResource gstyMenuItem}"
+                        Click="mitCanaisDonchian_Click"/>
+            -->
+        </Menu>
+
+        <Grid Grid.Row="3" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"
+              Background="#FFE0E0E0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="grdControles" Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>

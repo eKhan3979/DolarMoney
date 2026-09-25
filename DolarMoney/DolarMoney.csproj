@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.20348.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Imagens\coin_black.ico</ApplicationIcon>
+    <SupportedOSPlatformVersion>10.0.20348.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Comum\coin_1.png" />
+    <None Remove="Comum\coin_white.png" />
+    <None Remove="Comum\Fechar.png" />
+    <None Remove="Comum\Logo32.ico" />
+    <None Remove="Comum\WindowClose.png" />
+    <None Remove="Comum\WindowMaximize.png" />
+    <None Remove="Comum\WindowMinimize.png" />
+    <None Remove="Comum\WindowNormal.png" />
+    <None Remove="Controles2\Save.png" />
+    <None Remove="Controles\Delete.png" />
+    <None Remove="Controles\Edit.png" />
+    <None Remove="Controles\New.png" />
+    <None Remove="Controles\Save.png" />
+    <None Remove="Controles\Trash.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Imagens\coin_black.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="ScottPlot.WPF" Version="5.1.57" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DolarMoney.Model\DolarMoney.Model.csproj" />
+    <ProjectReference Include="..\DolarMoney.Regras\DolarMoney.Regras.csproj" />
+    <ProjectReference Include="..\DolarMoney.ViewModel\DolarMoney.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Comum\coin_1.png" />
+    <Resource Include="Comum\coin_white.png" />
+    <Resource Include="Comum\Fechar.png" />
+    <Resource Include="Comum\Logo32.ico" />
+    <Resource Include="Comum\WindowClose.png" />
+    <Resource Include="Comum\WindowMaximize.png" />
+    <Resource Include="Comum\WindowMinimize.png" />
+    <Resource Include="Comum\WindowNormal.png" />
+    <Resource Include="Controles2\Save.png" />
+    <Resource Include="Controles\Delete.png" />
+    <Resource Include="Controles\Edit.png" />
+    <Resource Include="Controles\New.png" />
+    <Resource Include="Controles\Save.png" />
+    <Resource Include="Controles\Trash.png" />
+	<Resource Include="Controles2\Analise.png" />
+	<Resource Include="Controles2\Edit.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Imagens\WindowNormal.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

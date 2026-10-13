@@ -25,14 +25,21 @@ namespace DolarMoney.DAO
         #region Private
 
         private string decParaString(decimal decValor, int intLen)
-        {                      //12345
-            string strEspacos = "     ",
-                   strValor = decValor.ToString("0.#0").Replace(",", ".");
+        {                      //123456
+            string strEspacos = "      ",
+                   strValor = decValor.ToString("0.##0").Replace(",", ".");
 
-            if (strValor.Length < intLen)
-                strValor = strEspacos.Substring(0, intLen - strValor.Length) + strValor;
+            try
+            {
+                if (strValor.Length < intLen)
+                    strValor = strEspacos.Substring(0, intLen - strValor.Length) + strValor;
+            }
+            catch (Exception excErro)
+            {
 
-            return strValor;
+            }
+
+            return strValor.Substring(strValor.Length - 10, 10);
         }
 
         private string intParaString(int intValor, int intLen)

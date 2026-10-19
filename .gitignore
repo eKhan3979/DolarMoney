@@ -1,3 +1,7 @@
+/.vs
+/.vs/DolarMoney
+.vs
+.vs/DolarMoney
 /DolarMoney/bin
 /DolarMoney/obj
 /DolarMoney.DAO/bin
@@ -12,7 +16,3 @@
 /Investing
 /StatusInvest
 /Scripts
-/.vs
-/.vs/DolarMoney
-.vs
-.vs/DolarMoney

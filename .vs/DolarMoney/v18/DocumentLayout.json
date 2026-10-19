@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Programacao\\DolarMoney\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{70B367F4-A957-4D9F-BD97-92696589507F}|DolarMoney\\DolarMoney.csproj|d:\\programacao\\dolarmoney\\dolarmoney\\controles2\\ucrinvesting.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70B367F4-A957-4D9F-BD97-92696589507F}|DolarMoney\\DolarMoney.csproj|solutionrelative:dolarmoney\\controles2\\ucrinvesting.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{70B367F4-A957-4D9F-BD97-92696589507F}|DolarMoney\\DolarMoney.csproj|d:\\programacao\\dolarmoney\\dolarmoney\\controles\\ucrcotacoesdodia.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{70B367F4-A957-4D9F-BD97-92696589507F}|DolarMoney\\DolarMoney.csproj|solutionrelative:dolarmoney\\controles\\ucrcotacoesdodia.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -43,6 +47,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
@@ -54,10 +62,10 @@
       "FloatingWindowState": {
         "Id": "d8af9fa5-5d16-493a-8c77-3723bd564140",
         "Display": 0,
-        "X": 268,
-        "Y": 206,
-        "Width": 751,
-        "Height": 587,
+        "X": 270,
+        "Y": 204,
+        "Width": 964,
+        "Height": 542,
         "WindowState": 0
       },
       "DocumentGroups": [
@@ -68,15 +76,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UcrInvesting.xaml.cs",
+              "DocumentMoniker": "D:\\Programacao\\DolarMoney\\DolarMoney\\Controles2\\UcrInvesting.xaml.cs",
+              "RelativeDocumentMoniker": "DolarMoney\\Controles2\\UcrInvesting.xaml.cs",
+              "ToolTip": "D:\\Programacao\\DolarMoney\\DolarMoney\\Controles2\\UcrInvesting.xaml.cs",
+              "RelativeToolTip": "DolarMoney\\Controles2\\UcrInvesting.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAADUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-07T16:40:05.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "UcrCotacoesDoDia.xaml.cs",
               "DocumentMoniker": "D:\\Programacao\\DolarMoney\\DolarMoney\\Controles\\UcrCotacoesDoDia.xaml.cs",
               "RelativeDocumentMoniker": "DolarMoney\\Controles\\UcrCotacoesDoDia.xaml.cs",
               "ToolTip": "D:\\Programacao\\DolarMoney\\DolarMoney\\Controles\\UcrCotacoesDoDia.xaml.cs",
               "RelativeToolTip": "DolarMoney\\Controles\\UcrCotacoesDoDia.xaml.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAxwI4AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-17T12:43:39.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-17T12:43:39.056Z"
             }
           ]
         }

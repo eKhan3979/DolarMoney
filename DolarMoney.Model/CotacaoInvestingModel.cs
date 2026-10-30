@@ -9,8 +9,11 @@ namespace DolarMoney.Model
         private int _numero,
                     _idInvestimento;
         private string _ticker,
-                       _cotacaoStr;
-        private decimal _cotacao;        
+                       _cotacaoStr,
+                       _volumeFormat,
+                       _volumeStr;
+        private decimal _cotacao,
+                        _volume;        
 
         #endregion
 
@@ -82,6 +85,55 @@ namespace DolarMoney.Model
                 {
                     _cotacao = value;
                     OnPropertyChanged(nameof(Cotacao));
+                }
+            }
+        }
+        public string VolumeStr
+        {
+            get => _volumeStr;
+            set
+            {
+                if (_volumeStr != value)
+                {
+                    _volumeStr = value;
+                    OnPropertyChanged(nameof(VolumeStr));
+
+                    try 
+                    {
+                        if (_volumeStr.Contains("M"))
+                            Volume = 1000000 * decimal.Parse(_volumeStr.Replace("M", "")
+                                                                       .Replace(",", "")
+                                                                       .Replace(".", ","));
+                        else
+                            Volume = decimal.Parse(_volumeStr.Replace(",", "").Replace(".", ","));
+                    }
+                    catch { }
+                }
+            }
+        }
+        public decimal Volume
+        {
+            get => _volume;
+            set
+            {
+                if (_volume != value)
+                {
+                    _volume = value;
+                    OnPropertyChanged(nameof(Volume));
+
+                    VolumeFormat = _volume.ToString("#,##0");
+                }
+            }
+        }
+        public string VolumeFormat
+        {
+            get => _volumeFormat;
+            set
+            {
+                if (_volumeFormat != value)
+                {
+                    _volumeFormat = value;
+                    OnPropertyChanged(nameof(VolumeFormat));
                 }
             }
         }

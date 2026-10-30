@@ -53,6 +53,17 @@ namespace DolarMoney.DAO
             return strValor;
         }
 
+        private string intParaString(decimal dcmValor, int intLen)
+        {                      //1234567890 
+            string strEspacos = "          ",
+                   strValor = dcmValor.ToString("0");
+
+            if (strValor.Length < intLen)
+                strValor = strValor + strEspacos.Substring(0, intLen - strValor.Length);
+
+            return strValor;
+        }
+
         #endregion
 
         #region Público
@@ -166,6 +177,7 @@ namespace DolarMoney.DAO
             {
                 string strIdInvestimento = "",
                        strCotacao = "",
+                       strVolume = "",
                        strSql = "";
 
                 using (MySqlConnection conexao = GetConexao())
@@ -176,6 +188,7 @@ namespace DolarMoney.DAO
                         {
                             strIdInvestimento += intParaString(lstCotacoes[intCotacao].IdInvestimento, 5);
                             strCotacao += decParaString(lstCotacoes[intCotacao].Cotacao, 10);
+                            strVolume += intParaString(lstCotacoes[intCotacao].Volume, 10);
 
                             if (strIdInvestimento.Length == 250)
                             {
@@ -184,7 +197,7 @@ namespace DolarMoney.DAO
                                     if (conexao.State == ConnectionState.Closed)
                                         await conexao.OpenAsync();
 
-                                    strSql = $"Call u258112148_1.SpDCotacao_GravarLista('{strYyyy_Mm_Dd}', '{strIdInvestimento}', '{strCotacao}');";
+                                    strSql = $"Call u258112148_1.SpDCotacao_GravarLista('{strYyyy_Mm_Dd}', '{strIdInvestimento}', '{strCotacao}', '{strVolume}');";
 
                                     comando.CommandText = strSql;
                                     comando.CommandType = CommandType.Text;
@@ -206,7 +219,7 @@ namespace DolarMoney.DAO
                             if (conexao.State == ConnectionState.Closed)
                                 await conexao.OpenAsync();
 
-                            strSql = $"Call u258112148_1.SpDCotacao_GravarLista('{strYyyy_Mm_Dd}', '{strIdInvestimento}', '{strCotacao}');";
+                            strSql = $"Call u258112148_1.SpDCotacao_GravarLista('{strYyyy_Mm_Dd}', '{strIdInvestimento}', '{strCotacao}', '{strVolume}');";
 
                             comando.CommandText = strSql;
                             comando.CommandType = CommandType.Text;

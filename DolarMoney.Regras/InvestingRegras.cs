@@ -114,6 +114,7 @@ namespace DolarMoney.Regras
 
                     HtmlNode? nodeTicker = null;
                     HtmlNode? nodeCotacao = null;
+                    HtmlNode? nodeVolume = null;
 
                     for (int intNode = 0; intNode < docHTML.DocumentNode.ChildNodes[0].ChildNodes[1].ChildNodes.Count; intNode++)
                     {
@@ -121,11 +122,15 @@ namespace DolarMoney.Regras
                         {
                             nodeTicker = docHTML.DocumentNode.ChildNodes[0].ChildNodes[1].ChildNodes[intNode].ChildNodes[7];
                             nodeCotacao = docHTML.DocumentNode.ChildNodes[0].ChildNodes[1].ChildNodes[intNode].ChildNodes[11];
+                            nodeVolume = docHTML.DocumentNode.ChildNodes[0].ChildNodes[1].ChildNodes[intNode].ChildNodes[33];
 
                             CotacaoInvestingModel? cotacao = _vm.ListaCotacaoes.FirstOrDefault(t => t.Ticker == nodeTicker.InnerText.Trim());
 
                             if (cotacao != null)
+                            {
                                 cotacao.CotacaoStr = nodeCotacao.InnerText.Trim();
+                                cotacao.VolumeStr = nodeVolume.InnerText.Trim();
+                            }                                
                         }
                         catch { }
                     }
